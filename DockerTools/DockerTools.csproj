@@ -20,9 +20,8 @@
         <PackageIcon>icon.png</PackageIcon>
     </PropertyGroup>
 
-    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <PropertyGroup>
       <GenerateDocumentationFile>True</GenerateDocumentationFile>
-      <DocumentationFile>bin\Release\Kenbi.DockerTools.xml</DocumentationFile>
       <NoWarn>$(NoWarn);CS1591</NoWarn>
     </PropertyGroup>
 
