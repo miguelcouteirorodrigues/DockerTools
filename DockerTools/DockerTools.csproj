@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AssemblyName>miguelcouteirorodrigues.DockerTools</AssemblyName>
@@ -15,47 +16,34 @@
         <PackageTags>library, docker, test</PackageTags>
         <PackageId>miguelcouteirorodrigues.DockerTools</PackageId>
         <PackageProjectUrl>https://github.com/miguelcouteirorodrigues/DockerTools</PackageProjectUrl>
-        <TargetFramework>net8.0</TargetFramework>
         <Title>miguelcouteirorodrigues.DockerTools</Title>
         <PackageIcon>icon.png</PackageIcon>
-    </PropertyGroup>
-
-    <PropertyGroup>
-      <GenerateDocumentationFile>True</GenerateDocumentationFile>
-      <NoWarn>$(NoWarn);CS1591</NoWarn>
-    </PropertyGroup>
-
-    <PropertyGroup>
-      <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    </PropertyGroup>
-
-    <PropertyGroup>
-      <EnablePackageValidation>true</EnablePackageValidation>
-    </PropertyGroup>
-
-    <PropertyGroup>
-      <PackageReadmeFile>README.md</PackageReadmeFile>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);CS1591</NoWarn>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <EnablePackageValidation>true</EnablePackageValidation>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Docker.DotNet" Version="3.125.15" />
-      <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
+        <PackageReference Include="Docker.DotNet" Version="3.125.15"/>
+        <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="..\icon.png">
-        <Pack>True</Pack>
-        <PackagePath></PackagePath>
-        <Link>icon.png</Link>
-      </None>
-      <None Include="..\README.md">
-        <Pack>True</Pack>
-        <PackagePath></PackagePath>
-        <Link>README.md</Link>
-      </None>
+        <None Include="..\icon.png">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+            <Link>icon.png</Link>
+        </None>
+        <None Include="..\README.md">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+            <Link>README.md</Link>
+        </None>
     </ItemGroup>
 
 </Project>
