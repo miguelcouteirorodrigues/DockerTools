@@ -56,7 +56,7 @@ jobs:
     - name: Prep packages
       run: dotnet nuget add source --username miguelcouteirorodrigues --password ${{ secrets.NUGET_PACKAGE_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/miguelcouteirorodrigues/index.json"
     - name: List contents
-      run: >
+      run: |
         ls -l ${GITHUB_WORKSPACE}
         ls -l ${GITHUB_WORKSPACE}/nugetPackage
     - name: Push package to GitHub packages 
