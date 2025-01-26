@@ -1,13 +1,13 @@
 ﻿using Docker.DotNet;
 using Docker.DotNet.Models;
-using Kenbi.DockerTools.Containers;
-using Kenbi.DockerTools.Containers.Templates;
-using Kenbi.DockerTools.Exceptions;
-using Kenbi.DockerTools.Options.Connection;
-using Kenbi.DockerTools.Options.Connection.ConnectionTypes;
-using Kenbi.DockerTools.Options.Container;
+using miguelcouteirorodrigues.DockerTools.Containers;
+using miguelcouteirorodrigues.DockerTools.Containers.Templates;
+using miguelcouteirorodrigues.DockerTools.Exceptions;
+using miguelcouteirorodrigues.DockerTools.Options.Connection;
+using miguelcouteirorodrigues.DockerTools.Options.Connection.ConnectionTypes;
+using miguelcouteirorodrigues.DockerTools.Options.Container;
 
-namespace Kenbi.DockerTools;
+namespace miguelcouteirorodrigues.DockerTools;
 
 /// <summary>
 /// Entry point to creating a new container instance.

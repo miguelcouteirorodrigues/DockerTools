@@ -1,4 +1,4 @@
-namespace Kenbi.DockerTools.Options.Container;
+namespace miguelcouteirorodrigues.DockerTools.Options.Container;
 
 /// <summary>
 /// Options for setting container configurations.

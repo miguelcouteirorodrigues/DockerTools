@@ -1,4 +1,4 @@
-﻿namespace Kenbi.DockerTools.Models;
+﻿namespace miguelcouteirorodrigues.DockerTools.Models;
 
 /// <summary>
 /// Allows for configuring the container ports.

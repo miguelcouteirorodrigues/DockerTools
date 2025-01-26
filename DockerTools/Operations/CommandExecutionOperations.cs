@@ -1,8 +1,8 @@
 ﻿using Docker.DotNet;
 using Docker.DotNet.Models;
-using Kenbi.DockerTools.Models;
+using miguelcouteirorodrigues.DockerTools.Models;
 
-namespace Kenbi.DockerTools.Operations;
+namespace miguelcouteirorodrigues.DockerTools.Operations;
 
 internal static class CommandExecutionOperations
 {

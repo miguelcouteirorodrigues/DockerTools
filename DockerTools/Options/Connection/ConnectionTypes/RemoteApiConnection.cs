@@ -1,6 +1,6 @@
 using Docker.DotNet;
 
-namespace Kenbi.DockerTools.Options.Connection.ConnectionTypes;
+namespace miguelcouteirorodrigues.DockerTools.Options.Connection.ConnectionTypes;
 
 /// <summary>
 /// Allows for the configuration of a connection to a remote Docker HTTP API.

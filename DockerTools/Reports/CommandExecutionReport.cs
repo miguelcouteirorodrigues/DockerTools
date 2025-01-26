@@ -1,4 +1,4 @@
-﻿namespace Kenbi.DockerTools.Reports;
+﻿namespace miguelcouteirorodrigues.DockerTools.Reports;
 
 /// <summary>
 /// Lists information about the result of

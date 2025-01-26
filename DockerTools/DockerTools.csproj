@@ -1,26 +1,61 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <AssemblyName>Kenbi.DockerTools</AssemblyName>
-        <RootNamespace>Kenbi.DockerTools</RootNamespace>
+        <AssemblyName>miguelcouteirorodrigues.DockerTools</AssemblyName>
+        <RootNamespace>miguelcouteirorodrigues.DockerTools</RootNamespace>
         <IsPackable>true</IsPackable>
-        <Company>Kenbi</Company>
-        <Product>Kenbi.DockerTools</Product>
+        <Product>miguelcouteirorodrigues.DockerTools</Product>
         <Version>3.0.4</Version>
         <RepositoryUrl>https://github.com/miguelcouteirorodrigues/DockerTools</RepositoryUrl>
         <RepositoryType>Library</RepositoryType>
         <Description>Tool for creating test databases on Docker</Description>
+        <Authors>miguelcouteirorodrigues</Authors>
+        <PackageTags>library, docker, test</PackageTags>
+        <PackageId>miguelcouteirorodrigues.DockerTools</PackageId>
+        <PackageProjectUrl>https://github.com/miguelcouteirorodrigues/DockerTools</PackageProjectUrl>
+        <TargetFramework>net8.0</TargetFramework>
+        <Title>miguelcouteirorodrigues.DockerTools</Title>
+        <PackageIcon>icon.png</PackageIcon>
     </PropertyGroup>
 
-    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <DocumentationFile>bin\Release\Kenbi.DockerTools.xml</DocumentationFile>
+    <PropertyGroup>
+      <GenerateDocumentationFile>True</GenerateDocumentationFile>
+      <NoWarn>$(NoWarn);CS1591</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup>
+      <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    </PropertyGroup>
+
+    <PropertyGroup>
+      <EnablePackageValidation>true</EnablePackageValidation>
+    </PropertyGroup>
+
+    <PropertyGroup>
+      <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="Docker.DotNet" Version="3.125.15" />
+      <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="..\icon.png">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+        <Link>icon.png</Link>
+      </None>
+      <None Include="..\README.md">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+        <Link>README.md</Link>
+      </None>
     </ItemGroup>
 
 </Project>

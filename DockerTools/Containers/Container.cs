@@ -1,9 +1,9 @@
 ﻿using Docker.DotNet;
 using Docker.DotNet.Models;
-using Kenbi.DockerTools.Containers.Templates;
-using Kenbi.DockerTools.Models;
+using miguelcouteirorodrigues.DockerTools.Containers.Templates;
+using miguelcouteirorodrigues.DockerTools.Models;
 
-namespace Kenbi.DockerTools.Containers;
+namespace miguelcouteirorodrigues.DockerTools.Containers;
 
 /// <inheritdoc />
 public sealed class Container<T> : IContainer<T> where T : IContainerTemplate, new()

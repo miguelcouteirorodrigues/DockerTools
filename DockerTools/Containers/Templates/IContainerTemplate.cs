@@ -1,8 +1,8 @@
 ﻿using Docker.DotNet;
-using Kenbi.DockerTools.Models;
-using Kenbi.DockerTools.Options.Container;
+using miguelcouteirorodrigues.DockerTools.Models;
+using miguelcouteirorodrigues.DockerTools.Options.Container;
 
-namespace Kenbi.DockerTools.Containers.Templates;
+namespace miguelcouteirorodrigues.DockerTools.Containers.Templates;
 
 /// <summary>
 /// Reference for creating base container configurations.

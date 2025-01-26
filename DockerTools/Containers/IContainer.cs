@@ -1,8 +1,8 @@
 ﻿using Docker.DotNet;
-using Kenbi.DockerTools.Containers.Templates;
-using Kenbi.DockerTools.Models;
+using miguelcouteirorodrigues.DockerTools.Containers.Templates;
+using miguelcouteirorodrigues.DockerTools.Models;
 
-namespace Kenbi.DockerTools.Containers;
+namespace miguelcouteirorodrigues.DockerTools.Containers;
 
 /// <summary>
 /// Represents an instance of a DockerTools container tracker.
