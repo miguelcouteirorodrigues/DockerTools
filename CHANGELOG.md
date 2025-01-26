@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
 
+<a name="1.1.0"></a>
+## [1.1.0](https://www.github.com/miguelcouteirorodrigues/DockerTools/releases/tag/v1.1.0) (2025-01-26)
+
+### Bug Fixes
+
+* Correct email address ([#24](https://www.github.com/miguelcouteirorodrigues/DockerTools/issues/24)) ([97235a5](https://www.github.com/miguelcouteirorodrigues/DockerTools/commit/97235a5997623ac24dc94b0c92b74c141174e668))
+
 <a name="1.1.0-beta.0"></a>
 ## [1.1.0-beta.0](https://www.github.com/miguelcouteirorodrigues/DockerTools/releases/tag/v1.1.0-beta.0) (2025-01-26)
 
