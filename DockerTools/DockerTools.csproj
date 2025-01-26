@@ -26,10 +26,6 @@
       <PackageLicenseExpression>MIT</PackageLicenseExpression>
     </PropertyGroup>
 
-    <PropertyGroup>
-      <PackageReadmeFile>../README.md</PackageReadmeFile>
-    </PropertyGroup>
-
     <ItemGroup>
       <PackageReference Include="Docker.DotNet" Version="3.125.15" />
     </ItemGroup>
