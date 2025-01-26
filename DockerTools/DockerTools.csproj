@@ -16,7 +16,7 @@
         <PackageId>miguelcouteirorodrigues.DockerTools</PackageId>
         <PackageProjectUrl>https://github.com/miguelcouteirorodrigues/DockerTools</PackageProjectUrl>
         <TargetFramework>net8.0</TargetFramework>
-        <PackageIcon>icon.webp</PackageIcon>
+        <PackageIcon>icon.png</PackageIcon>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -46,8 +46,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\icon.webp">
-        <Link>icon.webp</Link>
+      <Content Include="..\icon.png">
+        <Link>icon.png</Link>
       </Content>
       <Content Include="..\README.md">
         <Link>README.md</Link>
