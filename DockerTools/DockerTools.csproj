@@ -16,8 +16,8 @@
         <PackageId>miguelcouteirorodrigues.DockerTools</PackageId>
         <PackageProjectUrl>https://github.com/miguelcouteirorodrigues/DockerTools</PackageProjectUrl>
         <TargetFramework>net8.0</TargetFramework>
-        <PackageIcon>icon.png</PackageIcon>
         <Title>miguelcouteirorodrigues.DockerTools</Title>
+        <PackageIcon>icon.png</PackageIcon>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -47,10 +47,14 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="..\icon.png" Pack="true">
+      <None Include="..\icon.png">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
         <Link>icon.png</Link>
       </None>
-      <None Include="..\README.md" Pack="true">
+      <None Include="..\README.md">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
         <Link>README.md</Link>
       </None>
     </ItemGroup>
