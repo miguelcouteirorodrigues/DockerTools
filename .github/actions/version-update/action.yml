@@ -37,7 +37,7 @@ runs:
     - name: Setup git
       run: |
         git config --global user.name ${{ inputs.username }}
-        git config --global user.email ""
+        git config --global user.email "a@yahoo.com"
       shell: pwsh
 
     - name: Versioning
