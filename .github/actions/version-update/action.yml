@@ -2,97 +2,90 @@ name: Version and Release
 description: Use Versionize to generate a new package with the updated version
 
 inputs:
-    username:
-        description: The GitHub username that generated the release
-        required: true
-    branch:
-        description: The branch on which to create the tag
-        required: false
-        default: main
-    github-token:
-        description: Token with write permissions
-        required: true
+  username:
+    description: The GitHub username that generated the release
+    required: true
+  github-token:
+    description: Token with write permissions
+    required: true
 
 outputs:
-    outcome:
-        description: "The output of the Versionize analysis."
-        value: ${{ steps.versionize.outcome }}
+  outcome:
+    description: "The output of the Versionize analysis."
+    value: ${{ steps.versionize.outcome }}
 
 runs:
-    using: 'composite'
-    steps:
-        -   uses: actions/checkout@v3
-            with:
-                fetch-depth: 0
+  using: 'composite'
+  steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
-        -   name: Setup .NET
-            uses: actions/setup-dotnet@v3
-            with:
-                dotnet-version: 8.0.x
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
 
-        -   name: Build
-            run: dotnet build
-            shell: pwsh
+    - name: Build
+      run: dotnet build
+      shell: pwsh
 
-        -   name: Install Versionize
-            run: dotnet tool install --global Versionize
-            shell: pwsh
+    - name: Install Versionize
+      run: dotnet tool install --global Versionize
+      shell: pwsh
 
-        -   name: Versioning
-            id: versionize
-            run: |
-                if ("${{ github.event_name }}" -eq "pull_request" -and "${{ github.head_ref }}" -eq "${{ inputs.branch }}")
-                {
-                    versionize --ignore-insignificant-commits --pre-release beta
-                }
-                else
-                {
-                    versionize --ignore-insignificant-commits
-                }
-            continue-on-error: true
-            shell: pwsh
+    - name: Setup git
+      run: |
+        git config --global user.name ${{ inputs.username }}
+        git config --global user.email "a@yahoo.com"
+      shell: pwsh
 
-#        -   name: Output Versionize outcome
-#            run: echo outcome="${{ steps.versionize.outcome }}" >> "$GITHUB_OUTPUT"
-#            shell: bash
+    - name: Versioning
+      id: versionize
+      run: |
+        if ("${{ github.event_name }}" -eq "pull_request")
+        {
+            versionize --ignore-insignificant-commits --pre-release beta
+        }
+        else
+        {
+            versionize --ignore-insignificant-commits
+        }
+      continue-on-error: true
+      shell: pwsh
 
-        -   name: No release required
-            if: steps.versionize.outcome != 'success'
-            run: echo "Skipping Release. No release required."
-            shell: pwsh
+    - name: No release required
+      if: steps.versionize.outcome != 'success'
+      run: echo "Skipping Release. No release required."
+      shell: pwsh
 
-        -   name: Setup git
-            run: |
-                git config --local user.name ${{ inputs.username }}
-            shell: pwsh
+    - name: Push changes to GitHub
+      if: steps.versionize.outcome == 'success'
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ inputs.github-token }}
+        branch: ${{ github.ref }}
+        tags: true
 
-        -   name: Push changes to GitHub
-            if: steps.versionize.outcome == 'success'
-            uses: ad-m/github-push-action@master
-            with:
-                github_token: ${{ inputs.github-token }}
-                branch: ${{ github.ref }}
-                tags: true
-
-        -   name: "Create release"
-            if: steps.versionize.outcome == 'success'
-            uses: actions/github-script@v5
-            with:
-                github-token: "${{ inputs.github-token }}"
-                script: |
-                    try {
-                      const tags_url = context.payload.repository.tags_url + "?per_page=1"
-                      const result = await github.request(tags_url)
-                      const current_tag = result.data[0].name
-                      await github.rest.repos.createRelease({
-                        draft: false,
-                        generate_release_notes: true,
-                        name: current_tag,
-                        owner: context.repo.owner,
-                        prerelease: false,
-                        repo: context.repo.repo,
-                        tag_name: current_tag,
-                      });
-                    } catch (error) {
-                      core.setFailed(error.message);
-                    }
+    - name: "Create release"
+      if: steps.versionize.outcome == 'success'
+      uses: actions/github-script@v5
+      with:
+        github-token: "${{ inputs.github-token }}"
+        script: |
+          try {
+            const tags_url = context.payload.repository.tags_url + "?per_page=1"
+            const result = await github.request(tags_url)
+            const current_tag = result.data[0].name
+            await github.rest.repos.createRelease({
+              draft: false,
+              generate_release_notes: true,
+              name: current_tag,
+              owner: context.repo.owner,
+              prerelease: false,
+              repo: context.repo.repo,
+              tag_name: current_tag,
+            });
+          } catch (error) {
+            core.setFailed(error.message);
+          }

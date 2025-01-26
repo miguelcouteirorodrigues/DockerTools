@@ -1,23 +1,15 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 
-name: publish
+name: main
 on:
-    workflow_dispatch: # Allow running the workflow manually from the GitHub UI
     push:
         branches:
             - 'main'       # Run the workflow when pushing to the main branch
-    pull_request:
-        branches:
-            - '*'          # Run the workflow for all pull requests
-    release:
-        types:
-            - published    # Run the workflow when a new GitHub release is published
 
 env:
     DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
     DOTNET_NOLOGO: true
     NuGetDirectory: ${{ github.workspace }}/nuget
-    Branch: ${{ github.head_ref }}
 
 defaults:
     run:
@@ -43,7 +35,6 @@ jobs:
                 uses: ./.github/actions/version-update
                 with:
                     username: ${{ github.actor }}
-                    branch: ${{ env.Branch }}
                     github-token: ${{ secrets.GITHUB_TOKEN }}
                     
     version_update_output:
