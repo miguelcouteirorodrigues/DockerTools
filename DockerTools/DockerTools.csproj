@@ -15,15 +15,21 @@
         <Authors>miguelcouteirorodrigues</Authors>
         <PackageTags>library, docker, test</PackageTags>
         <PackageId>miguelcouteirorodrigues.DockerTools</PackageId>
+        <PackageProjectUrl>https://github.com/miguelcouteirorodrigues/DockerTools</PackageProjectUrl>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <GenerateDocumentationFile>True</GenerateDocumentationFile>
       <DocumentationFile>bin\Release\Kenbi.DockerTools.xml</DocumentationFile>
       <NoWarn>$(NoWarn);CS1591</NoWarn>
     </PropertyGroup>
 
     <PropertyGroup>
       <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    </PropertyGroup>
+
+    <PropertyGroup>
+      <EnablePackageValidation>false</EnablePackageValidation>
     </PropertyGroup>
 
     <ItemGroup>
