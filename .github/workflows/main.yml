@@ -40,7 +40,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: nugetPackage
-        path: /home/runner/work/DockerTools/DockerTools/DockerTools/bin/Release/
+        path: DockerTools/bin/Release/
         
   release:
     runs-on: ubuntu-latest    
@@ -57,9 +57,7 @@ jobs:
       run: dotnet nuget add source --username miguelcouteirorodrigues --password ${{ secrets.NUGET_PACKAGE_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/miguelcouteirorodrigues/index.json"
     - name: Push package to GitHub packages 
       if: needs.build.outputs.CommitsSinceVersionSource > 0 #Only release if there has been a commit/version change
-      run: >
-        echo ${GITHUB_WORKSPACE}/nugetPackage/*
-        dotnet nuget push nugetPackage/*.nupkg --api-key ${{ secrets.NUGET_PACKAGE_TOKEN }}  --source "github"
+      run: dotnet nuget push nugetPackage/*.nupkg --api-key ${{ secrets.NUGET_PACKAGE_TOKEN }}  --source "github"
     
     #Create release
     - name: Create Release
