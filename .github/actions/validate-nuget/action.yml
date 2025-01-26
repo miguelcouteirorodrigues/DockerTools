@@ -1,0 +1,34 @@
+name: Validate generated NuGet package
+
+inputs:
+    NuGetDirectory:
+        description: The directory on which to create the NuGet package
+        required: true
+
+runs:
+    using: 'composite'
+    steps:
+        -   uses: actions/checkout@v3
+            with:
+                fetch-depth: 0 # Get all history to allow automatic versioning using MinVer
+
+        -   name: Setup .NET
+            uses: actions/setup-dotnet@v4
+
+        # Download the NuGet package created in the previous job
+        -   uses: actions/download-artifact@v4
+            with:
+                name: nuget
+                path: ${{ env.NuGetDirectory }}
+
+        -   name: Install nuget validator
+            run: dotnet tool update Meziantou.Framework.NuGetPackageValidation.Tool --global
+            shell: pwsh
+
+        # Validate metadata and content of the NuGet package
+        # https://www.nuget.org/packages/Meziantou.Framework.NuGetPackageValidation.Tool#readme-body-tab
+        # If some rules are not applicable, you can disable them
+        # using the --excluded-rules or --excluded-rule-ids option
+        -   name: Validate package
+            run: meziantou.validate-nuget-package (Get-ChildItem "${{ env.NuGetDirectory }}/*.nupkg")
+            shell: pwsh

@@ -1,0 +1,30 @@
+name: Create NuGet package
+description: Creates a NuGet package of the project
+
+inputs:
+    NuGetDirectory:
+        description: The directory on which to create the NuGet package
+        required: true
+
+runs:
+    using: 'composite'
+    steps:
+        -   uses: actions/checkout@v3
+            with:
+                fetch-depth: 0 # Get all history to allow automatic versioning using MinVer
+
+        # Install the .NET SDK indicated in the global.json file
+        -   name: Setup .NET
+            uses: actions/setup-dotnet@v4
+
+        # Create the NuGet package in the folder from the environment variable NuGetDirectory
+        -   run: dotnet pack --configuration Release --output ${{ env.NuGetDirectory }}
+            shell: pwsh
+
+        # Publish the NuGet package as an artifact, so they can be used in the following jobs
+        -   uses: actions/upload-artifact@v4
+            with:
+                name: nuget
+                if-no-files-found: error
+                retention-days: 7
+                path: ${{ env.NuGetDirectory }}/*.nupkg
