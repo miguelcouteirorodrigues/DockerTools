@@ -1,9 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using System.Diagnostics;
-using Kenbi.DockerTools;
-using Kenbi.DockerTools.Containers;
-using Kenbi.DockerTools.Containers.Templates;
+using miguelcouteirorodrigues.DockerTools;
+using miguelcouteirorodrigues.DockerTools.Containers;
+using miguelcouteirorodrigues.DockerTools.Containers.Templates;
 
 namespace DockerTools.ConsoleApp;
 

@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics;
 using Docker.DotNet;
 using Docker.DotNet.Models;
-using Kenbi.DockerTools.Containers.Templates;
-using Kenbi.DockerTools.Models;
-using Kenbi.DockerTools.Utils;
+using miguelcouteirorodrigues.DockerTools.Containers.Templates;
+using miguelcouteirorodrigues.DockerTools.Models;
+using miguelcouteirorodrigues.DockerTools.Utils;
 
-namespace Kenbi.DockerTools.Operations;
+namespace miguelcouteirorodrigues.DockerTools.Operations;
 
 internal static class StartContainerOperations
 {

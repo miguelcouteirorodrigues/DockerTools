@@ -1,7 +1,7 @@
 ﻿using Docker.DotNet.Models;
-using Kenbi.DockerTools.Models;
+using miguelcouteirorodrigues.DockerTools.Models;
 
-namespace Kenbi.DockerTools.Utils;
+namespace miguelcouteirorodrigues.DockerTools.Utils;
 
 internal static class ConversionUtils
 {

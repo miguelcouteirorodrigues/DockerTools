@@ -1,6 +1,6 @@
-using Kenbi.DockerTools.Options.Connection.ConnectionTypes;
+using miguelcouteirorodrigues.DockerTools.Options.Connection.ConnectionTypes;
 
-namespace Kenbi.DockerTools.Options.Connection;
+namespace miguelcouteirorodrigues.DockerTools.Options.Connection;
 
 public class DockerToolsConnectionOptions
 {

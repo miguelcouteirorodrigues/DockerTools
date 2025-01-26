@@ -1,4 +1,4 @@
-﻿namespace Kenbi.DockerTools.Models;
+﻿namespace miguelcouteirorodrigues.DockerTools.Models;
 
 public class ScriptExecutionResult
 {

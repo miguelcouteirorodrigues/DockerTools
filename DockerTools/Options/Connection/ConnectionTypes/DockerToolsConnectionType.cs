@@ -1,7 +1,7 @@
 using Docker.DotNet;
-using Kenbi.DockerTools.Exceptions;
+using miguelcouteirorodrigues.DockerTools.Exceptions;
 
-namespace Kenbi.DockerTools.Options.Connection.ConnectionTypes;
+namespace miguelcouteirorodrigues.DockerTools.Options.Connection.ConnectionTypes;
 
 public abstract class DockerToolsConnectionType
 {

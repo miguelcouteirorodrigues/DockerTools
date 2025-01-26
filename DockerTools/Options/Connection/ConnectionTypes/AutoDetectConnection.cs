@@ -1,6 +1,6 @@
 using Docker.DotNet;
 
-namespace Kenbi.DockerTools.Options.Connection.ConnectionTypes;
+namespace miguelcouteirorodrigues.DockerTools.Options.Connection.ConnectionTypes;
 
 internal sealed class AutoDetectConnection : DockerToolsConnectionType
 {

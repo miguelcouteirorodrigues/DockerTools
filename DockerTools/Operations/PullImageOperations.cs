@@ -1,8 +1,8 @@
 ﻿using Docker.DotNet;
 using Docker.DotNet.Models;
-using Kenbi.DockerTools.Exceptions;
+using miguelcouteirorodrigues.DockerTools.Exceptions;
 
-namespace Kenbi.DockerTools.Operations;
+namespace miguelcouteirorodrigues.DockerTools.Operations;
 
 internal static class PullImageOperations
 {
