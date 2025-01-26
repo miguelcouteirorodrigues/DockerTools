@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
 
+<a name="1.1.1"></a>
+## [1.1.1](https://www.github.com/miguelcouteirorodrigues/DockerTools/releases/tag/v1.1.1) (2025-01-26)
+
+### Bug Fixes
+
+* Allow deploys on merge ([#25](https://www.github.com/miguelcouteirorodrigues/DockerTools/issues/25)) ([ce6529d](https://www.github.com/miguelcouteirorodrigues/DockerTools/commit/ce6529d4a48f1d0850d1505673d5d54bdec77b95))
+
 <a name="1.1.0"></a>
 ## [1.1.0](https://www.github.com/miguelcouteirorodrigues/DockerTools/releases/tag/v1.1.0) (2025-01-26)
 

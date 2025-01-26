@@ -8,7 +8,7 @@
         <RootNamespace>miguelcouteirorodrigues.DockerTools</RootNamespace>
         <IsPackable>true</IsPackable>
         <Product>miguelcouteirorodrigues.DockerTools</Product>
-        <Version>1.1.0</Version>
+        <Version>1.1.1</Version>
         <RepositoryUrl>https://github.com/miguelcouteirorodrigues/DockerTools</RepositoryUrl>
         <RepositoryType>Library</RepositoryType>
         <Description>Tool for creating test databases on Docker</Description>
