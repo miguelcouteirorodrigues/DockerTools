@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
 
+<a name="1.1.2"></a>
+## [1.1.2](https://www.github.com/miguelcouteirorodrigues/DockerTools/releases/tag/v1.1.2) (2025-02-20)
+
+### Bug Fixes
+
+* Correct path to sqlcmd on SqlServer.cs container configuration ([789172e](https://www.github.com/miguelcouteirorodrigues/DockerTools/commit/789172e53e6a7f57b7340172dcb823b117c6975a))
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://www.github.com/miguelcouteirorodrigues/DockerTools/releases/tag/v1.1.1) (2025-01-26)
 
