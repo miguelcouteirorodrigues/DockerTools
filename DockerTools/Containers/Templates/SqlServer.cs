@@ -37,10 +37,10 @@ public sealed class SqlServer : IContainerTemplate
     };
     HealthCheck IContainerTemplate.HealthCheck => new()
     {
-        Command = $"{SqlCmd} -U $DB_USER -P $SA_PASSWORD -Q 'select 1' -b -o /dev/null",
-        Interval = new TimeSpan(0, 0, 2),
-        Timeout = new TimeSpan(0, 0, 2),
-        Retries = 5
+        Command = $"{GetBaseCommand()} -Q 'select 1' -b -o /dev/null",
+        Interval = new TimeSpan(0, 0, 5),
+        Timeout = new TimeSpan(0, 0, 5),
+        Retries = 10
     };
     
     void IContainerTemplate.ReplaceDefaultParameters(DockerToolsContainerOptions options)
@@ -68,7 +68,7 @@ public sealed class SqlServer : IContainerTemplate
     
     Task<ScriptExecutionResult> IContainerTemplate.PerformPostStartOperationsAsync(DockerClient client, string id, CancellationToken token)
     {
-        var command = $"{SqlCmd} -U {this.Username} -P {this.Password} -Q";
+        var command = $"{GetBaseCommand()} -Q";
         var script = $"CREATE DATABASE {this.Database};";
         
         return CommandExecutionOperations.RunScriptAsync(client, id, command, script, token);
@@ -79,8 +79,13 @@ public sealed class SqlServer : IContainerTemplate
 
     Task<ScriptExecutionResult> IContainerTemplate.RunScriptAsync(DockerClient client, string id, string script, CancellationToken token)
     {
-        var command = $"{SqlCmd} -U {this.Username} -P {this.Password} -d {this.Database} -r 1 -Q";
+        var command = $"{GetBaseCommand()} -d {this.Database} -r 1 -Q";
         
         return CommandExecutionOperations.RunScriptAsync(client, id, command, script, token);
+    }
+
+    private string GetBaseCommand()
+    {
+        return $"{SqlCmd} -U {this.Username} -P {this.Password} -C";
     }
 }
