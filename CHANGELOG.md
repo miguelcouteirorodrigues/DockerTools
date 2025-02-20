@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
 
+<a name="1.1.3"></a>
+## [1.1.3](https://www.github.com/miguelcouteirorodrigues/DockerTools/releases/tag/v1.1.3) (2025-02-20)
+
+### Bug Fixes
+
+* Tweak SQL Server health check ([266d99e](https://www.github.com/miguelcouteirorodrigues/DockerTools/commit/266d99ea37bf03bde8a06a35cf54c3580921e10d))
+
 <a name="1.1.2"></a>
 ## [1.1.2](https://www.github.com/miguelcouteirorodrigues/DockerTools/releases/tag/v1.1.2) (2025-02-20)
 
