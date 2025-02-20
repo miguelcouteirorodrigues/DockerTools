@@ -10,6 +10,8 @@ namespace miguelcouteirorodrigues.DockerTools.Containers.Templates;
 /// </summary>
 public sealed class SqlServer : IContainerTemplate
 {
+    private const string SqlCmd = "/opt/mssql-tools18/bin/sqlcmd";
+    
     public string Image => "mcr.microsoft.com/mssql/server";
     public string Tag { get; private set; } = "2022-latest";
     public string Database { get; private set; } = "DockerTools";
@@ -35,7 +37,7 @@ public sealed class SqlServer : IContainerTemplate
     };
     HealthCheck IContainerTemplate.HealthCheck => new()
     {
-        Command = "/opt/mssql-tools/bin/sqlcmd -U $DB_USER -P $SA_PASSWORD -Q 'select 1' -b -o /dev/null",
+        Command = $"{SqlCmd} -U $DB_USER -P $SA_PASSWORD -Q 'select 1' -b -o /dev/null",
         Interval = new TimeSpan(0, 0, 2),
         Timeout = new TimeSpan(0, 0, 2),
         Retries = 5
@@ -66,7 +68,7 @@ public sealed class SqlServer : IContainerTemplate
     
     Task<ScriptExecutionResult> IContainerTemplate.PerformPostStartOperationsAsync(DockerClient client, string id, CancellationToken token)
     {
-        var command = $"/opt/mssql-tools/bin/sqlcmd -U {this.Username} -P {this.Password} -Q";
+        var command = $"{SqlCmd} -U {this.Username} -P {this.Password} -Q";
         var script = $"CREATE DATABASE {this.Database};";
         
         return CommandExecutionOperations.RunScriptAsync(client, id, command, script, token);
@@ -77,7 +79,7 @@ public sealed class SqlServer : IContainerTemplate
 
     Task<ScriptExecutionResult> IContainerTemplate.RunScriptAsync(DockerClient client, string id, string script, CancellationToken token)
     {
-        var command = $"/opt/mssql-tools/bin/sqlcmd -U {this.Username} -P {this.Password} -d {this.Database} -r 1 -Q";
+        var command = $"{SqlCmd} -U {this.Username} -P {this.Password} -d {this.Database} -r 1 -Q";
         
         return CommandExecutionOperations.RunScriptAsync(client, id, command, script, token);
     }
