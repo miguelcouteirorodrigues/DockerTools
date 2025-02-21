@@ -38,9 +38,10 @@ public sealed class SqlServer : IContainerTemplate
     HealthCheck IContainerTemplate.HealthCheck => new()
     {
         Command = $"{GetBaseCommand()} -Q 'select 1' -b -o /dev/null",
-        Interval = new TimeSpan(0, 0, 5),
-        Timeout = new TimeSpan(0, 0, 5),
-        Retries = 10
+        StartPeriod = 5,
+        Interval = new TimeSpan(0, 0, 2),
+        Timeout = new TimeSpan(0, 0, 2),
+        Retries = 5
     };
     
     void IContainerTemplate.ReplaceDefaultParameters(DockerToolsContainerOptions options)
@@ -75,7 +76,7 @@ public sealed class SqlServer : IContainerTemplate
     }
 
     string IContainerTemplate.GetConnectionString(string hostPort)
-        => $"Server=localhost,{hostPort};Database={this.Database};User Id={this.Username};Password={this.Password};";
+        => $"Server=::1,{hostPort};Database={this.Database};User Id={this.Username};Password={this.Password};Encrypt=false;";
 
     Task<ScriptExecutionResult> IContainerTemplate.RunScriptAsync(DockerClient client, string id, string script, CancellationToken token)
     {
