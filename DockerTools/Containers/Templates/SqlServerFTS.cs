@@ -6,14 +6,14 @@ using miguelcouteirorodrigues.DockerTools.Options.Container;
 namespace miguelcouteirorodrigues.DockerTools.Containers.Templates;
 
 /// <summary>
-/// Creates a new SQL Server container.
+/// Creates a new SQL Server container with Full Text Search installed.
 /// </summary>
-public sealed class SqlServer : IContainerTemplate
+public sealed class SqlServerFTS : IContainerTemplate
 {
-    private const string SqlCmd = "/opt/mssql-tools18/bin/sqlcmd";
+    private const string SqlCmd = "/opt/mssql-tools/bin/sqlcmd";
     
-    public string Image => "mcr.microsoft.com/mssql/server";
-    public string Tag { get; private set; } = "2022-latest";
+    public string Image => "vibs2006/sql_server_fts";
+    public string Tag { get; private set; } = "2022";
     public string Database { get; private set; } = "DockerTools";
     public string Username { get; private set; } = "sa";
     public string Password { get; private set; } = "ABc123$%";

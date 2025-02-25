@@ -92,3 +92,4 @@ Alternatively, if disposing is not an option, you can initialize the container w
 | Postgres  | postgres | 14.3        |
 | Postgis   | postgis/postgis | 14-3.4      |
 | SQL Server | mcr.microsoft.com/mssql/server | 2022-latest |
+| SQL Server (Full Text Search) | vibs2006/sql_server_fts | 2022 |
