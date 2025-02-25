@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
 
+<a name="1.2.0"></a>
+## [1.2.0](https://www.github.com/miguelcouteirorodrigues/DockerTools/releases/tag/v1.2.0) (2025-02-25)
+
+### Features
+
+* Add new SQL Server container template with Full Text Search support ([be0e378](https://www.github.com/miguelcouteirorodrigues/DockerTools/commit/be0e378326edd1959c2b13d5d0fb1398ca210174))
+
 <a name="1.1.4"></a>
 ## [1.1.4](https://www.github.com/miguelcouteirorodrigues/DockerTools/releases/tag/v1.1.4) (2025-02-21)
 
