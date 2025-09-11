@@ -17,7 +17,7 @@ public sealed class Container<T> : IContainer<T> where T : IContainerTemplate, n
     public string Id { get; }
 
     /// <inheritdoc />
-    public string ConnectionString { get; private set; }
+    public ConnectionString ConnectionString { get; private set; }
 
     internal Container(string id, DockerClient client, T containerTemplate, string hostPort)
     {

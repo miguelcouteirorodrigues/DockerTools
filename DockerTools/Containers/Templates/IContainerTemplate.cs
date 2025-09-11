@@ -46,7 +46,7 @@ public interface IContainerTemplate
 
     internal Task<ScriptExecutionResult> PerformPostStartOperationsAsync(DockerClient client, string id, CancellationToken token);
 
-    internal string GetConnectionString(string hostPort);
+    internal ConnectionString GetConnectionString(string hostPort);
 
     internal Task<ScriptExecutionResult> RunScriptAsync(DockerClient client, string id, string script, CancellationToken token);
 }

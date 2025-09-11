@@ -20,7 +20,7 @@ public interface IContainer<T> : IAsyncDisposable, IDisposable where T : IContai
     /// <summary>
     /// The connection string to the database instance.
     /// </summary>
-    public string ConnectionString { get; }
+    public ConnectionString ConnectionString { get; }
 
     /// <summary>
     /// Run a script on the container's database.

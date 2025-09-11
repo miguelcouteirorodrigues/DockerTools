@@ -48,6 +48,9 @@ public static class Program
             stopwatch.Stop();
             Console.WriteLine($"Instance {instance} initialization time: {stopwatch.ElapsedMilliseconds}ms");
         }
+        
+        Console.WriteLine($"Connection string: {container.ConnectionString}");
+        Console.WriteLine($"Connection string port: {container.ConnectionString.Port}");
 
         const string script = @"CREATE TABLE spatial_ref_sys2
 (
