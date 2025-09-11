@@ -38,9 +38,9 @@ internal class Valkyrie : IContainerTemplate
         return Task.FromResult(new ScriptExecutionResult(null));
     }
 
-    string IContainerTemplate.GetConnectionString(string hostPort)
+    ConnectionString IContainerTemplate.GetConnectionString(string hostPort)
     {
-        return string.Empty;
+        return new ConnectionString();
     }
 
     Task<ScriptExecutionResult> IContainerTemplate.RunScriptAsync(DockerClient client, string id, string script, CancellationToken token)

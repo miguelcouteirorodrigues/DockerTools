@@ -72,8 +72,16 @@ public sealed class Postgres : IContainerTemplate
         return Task.FromResult(new ScriptExecutionResult(null));
     }
 
-    string IContainerTemplate.GetConnectionString(string hostPort)
-        => $"Server=localhost;Port={hostPort};Database={this.Database};User Id={this.Username};Password={this.Password};Command Timeout=0;";
+    ConnectionString IContainerTemplate.GetConnectionString(string hostPort)
+    {
+        return new ConnectionString(
+            $"Server=localhost;Port={hostPort};Database={this.Database};User Id={this.Username};Password={this.Password};Command Timeout=0;",
+            hostPort,
+            this.Database,
+            this.Username,
+            this.Password
+        );
+    }
 
     Task<ScriptExecutionResult> IContainerTemplate.RunScriptAsync(DockerClient client, string id, string script, CancellationToken token)
     {
