@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
 
+<a name="1.3.0"></a>
+## [1.3.0](https://www.github.com/miguelcouteirorodrigues/DockerTools/releases/tag/v1.3.0) (2025-09-11)
+
+### Features
+
+* Extend connection string support ([#30](https://www.github.com/miguelcouteirorodrigues/DockerTools/issues/30)) ([6ba9e40](https://www.github.com/miguelcouteirorodrigues/DockerTools/commit/6ba9e4029ee74cc6879b1816490b7872ba6212bd))
+
 <a name="1.2.0"></a>
 ## [1.2.0](https://www.github.com/miguelcouteirorodrigues/DockerTools/releases/tag/v1.2.0) (2025-02-25)
 
