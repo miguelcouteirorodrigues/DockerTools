@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
 
+<a name="1.4.1"></a>
+## [1.4.1](https://www.github.com/miguelcouteirorodrigues/DockerTools/releases/tag/v1.4.1) (2025-09-12)
+
+### Bug Fixes
+
+* Correct environment variable value substitution ([#32](https://www.github.com/miguelcouteirorodrigues/DockerTools/issues/32)) ([6406ff6](https://www.github.com/miguelcouteirorodrigues/DockerTools/commit/6406ff6372f5bd77637af41c49950672af0e282a))
+
 <a name="1.4.0"></a>
 ## [1.4.0](https://www.github.com/miguelcouteirorodrigues/DockerTools/releases/tag/v1.4.0) (2025-09-12)
 
