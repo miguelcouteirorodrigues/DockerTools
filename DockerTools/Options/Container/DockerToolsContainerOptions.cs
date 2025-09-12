@@ -9,6 +9,7 @@ public class DockerToolsContainerOptions
     internal string? Database;
     internal string? Username;
     internal string? Password;
+    internal readonly IList<string> EnvironmentVariables = new List<string>();
     internal Guid? InstanceId;
 
     /// <summary>
@@ -55,6 +56,19 @@ public class DockerToolsContainerOptions
     public DockerToolsContainerOptions WithPassword(string value)
     {
         this.Password = value;
+
+        return this;
+    }
+
+    /// <summary>
+    /// Adds an environment variable.
+    /// Check the image's documentation for a list of supported variables.
+    /// </summary>
+    /// <param name="value">The environment variable to add to the default collection of the container.</param>
+    /// <returns>The <see cref="DockerToolsContainerOptions"/> instance.</returns>
+    public DockerToolsContainerOptions AddEnvironmentVariable(string value)
+    {
+        this.EnvironmentVariables.Add(value);
 
         return this;
     }
