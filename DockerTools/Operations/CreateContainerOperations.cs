@@ -29,6 +29,10 @@ internal static class CreateContainerOperations
             labels.Add("de.kenbi.dockertools.valkyrie", bool.TrueString);
         }
         
+        var environmentVariables = new List<string>(container.BaseEnvironmentVariables.Count + container.AdditionalEnvironmentVariables.Count);
+        environmentVariables.AddRange(container.BaseEnvironmentVariables);
+        environmentVariables.AddRange(container.AdditionalEnvironmentVariables);
+        
         return new CreateContainerParameters
         {
             Image = string.Concat(container.Image, ":", container.Tag),
@@ -42,7 +46,7 @@ internal static class CreateContainerOperations
                 },
                 Binds = container.Volumes.ConvertToVolumeBinds()
             },
-            Env = container.EnvironmentVariables,
+            Env = environmentVariables,
             Healthcheck = container.HealthCheck == null
                 ? null
                 : new HealthConfig
