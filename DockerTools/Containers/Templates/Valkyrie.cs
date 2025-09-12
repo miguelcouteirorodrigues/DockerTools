@@ -19,10 +19,11 @@ internal class Valkyrie : IContainerTemplate
 
     IEnumerable<PortConfiguration> IContainerTemplate.Ports { get; }
 
-    public IList<string> EnvironmentVariables => new List<string>
+    public List<string> EnvironmentVariables => new()
     {
         $"InstanceId={this._instanceId}"
     };
+
     HealthCheck IContainerTemplate.HealthCheck { get; }
 
     void IContainerTemplate.ReplaceDefaultParameters(DockerToolsContainerOptions options)

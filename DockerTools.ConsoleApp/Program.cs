@@ -36,6 +36,7 @@ public static class Program
         {
             container = await new DockerTools<Postgis>()
                 //.WithCleanUp(true)
+                .WithParameters(options => options.AddEnvironmentVariable("MSSQL_AGENT_ENABLED=True"))
                 .CreateAsync();
         }
         catch (Exception ex)

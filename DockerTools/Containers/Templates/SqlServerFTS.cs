@@ -27,22 +27,27 @@ public sealed class SqlServerFTS : IContainerTemplate
         }
     };
     
-    IList<string> IContainerTemplate.EnvironmentVariables => new List<string>
-    {
-        "ACCEPT_EULA=true",
-        $"MSSQL_SA_PASSWORD={this.Password}",
-        $"DB_USER={this.Username}",
-        $"SA_PASSWORD={this.Password}"
-        
-    };
+    public List<string> EnvironmentVariables { get; private set; }
+    
     HealthCheck IContainerTemplate.HealthCheck => new()
     {
         Command = $"{GetBaseCommand()} -Q 'select 1' -b -o /dev/null",
-        Interval = new TimeSpan(0, 0, 2),
-        Timeout = new TimeSpan(0, 0, 2),
+        Interval = new TimeSpan(0, 0, 3),
+        Timeout = new TimeSpan(0, 0, 3),
         Retries = 5,
-        StartPeriod = 10
+        StartPeriod = 12
     };
+
+    public SqlServerFTS()
+    {
+        this.EnvironmentVariables = new()
+        {
+            "ACCEPT_EULA=true",
+            $"MSSQL_SA_PASSWORD={this.Password}",
+            $"DB_USER={this.Username}",
+            $"SA_PASSWORD={this.Password}"
+        };
+    }
     
     void IContainerTemplate.ReplaceDefaultParameters(DockerToolsContainerOptions options)
     {
@@ -65,6 +70,8 @@ public sealed class SqlServerFTS : IContainerTemplate
         {
             this.Password = options.Password;
         }
+        
+        this.EnvironmentVariables.AddRange(options.EnvironmentVariables);
     }
     
     Task<ScriptExecutionResult> IContainerTemplate.PerformPostStartOperationsAsync(DockerClient client, string id, CancellationToken token)
