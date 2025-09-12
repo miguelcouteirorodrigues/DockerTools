@@ -38,8 +38,12 @@ internal static class StartContainerOperations
             {
                 case null when response.State.Running: // container with no health check
                     return true;
-                case { Status: Healthy, FailingStreak: 0 }:
-                    healthCounter += 1;
+                //case { Status: Healthy, FailingStreak: 0 }:
+                case { Status: Healthy }:
+                    if (response.State.Health.FailingStreak == 0)
+                    {
+                        healthCounter += 1;
+                    }
                     break;
                 default:
                     healthCounter -= 1;

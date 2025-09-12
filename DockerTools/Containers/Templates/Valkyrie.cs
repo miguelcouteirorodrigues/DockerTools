@@ -19,10 +19,12 @@ internal class Valkyrie : IContainerTemplate
 
     IEnumerable<PortConfiguration> IContainerTemplate.Ports { get; }
 
-    public List<string> EnvironmentVariables => new()
+    public IList<string> BaseEnvironmentVariables => new List<string>
     {
         $"InstanceId={this._instanceId}"
     };
+
+    public List<string> AdditionalEnvironmentVariables { get; }
 
     HealthCheck IContainerTemplate.HealthCheck { get; }
 

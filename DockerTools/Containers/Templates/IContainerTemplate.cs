@@ -36,7 +36,9 @@ public interface IContainerTemplate
     
     internal IEnumerable<PortConfiguration> Ports { get; }
     
-    internal List<string> EnvironmentVariables { get; }
+    internal IList<string> BaseEnvironmentVariables { get; }
+    
+    internal List<string> AdditionalEnvironmentVariables { get; }
     
     internal HealthCheck? HealthCheck { get; }
     

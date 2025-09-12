@@ -15,7 +15,7 @@ public static class Program
 
         var tasks = new List<Task>();
         
-        for (var i = 0; i < 5; i++)
+        for (var i = 0; i < 1; i++)
         {
             tasks.Add(ContainerRunAsync(i + 1));
         }
@@ -31,12 +31,14 @@ public static class Program
         var stopwatch = new Stopwatch();
         stopwatch.Start();
 
-        IContainer<Postgis>? container;
+        IContainer<SqlServer>? container;
         try
         {
-            container = await new DockerTools<Postgis>()
+            container = await new DockerTools<SqlServer>()
                 //.WithCleanUp(true)
-                .WithParameters(options => options.AddEnvironmentVariable("MSSQL_AGENT_ENABLED=True"))
+                .WithParameters(options => options
+                    .WithPassword("DataWarehouse4")
+                    .AddEnvironmentVariable("MSSQL_AGENT_ENABLED=true"))
                 .CreateAsync();
         }
         catch (Exception ex)

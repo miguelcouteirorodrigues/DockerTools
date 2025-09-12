@@ -25,7 +25,17 @@ public sealed class Postgis : IContainerTemplate
         }
     };
 
-    public List<string> EnvironmentVariables { get; private set; }
+    public IList<string> BaseEnvironmentVariables => new List<string>
+    {
+        $"POSTGRES_USER={this.Username}",
+        $"PGUSER={this.Username}",
+        $"POSTGRES_DB={this.Database}",
+        $"PGDATABASE={this.Database}",
+        $"POSTGRES_PASSWORD={this.Password}",
+        $"PGPASSWORD={this.Password}"
+    };
+
+    public List<string> AdditionalEnvironmentVariables { get; private set; } = new();
 
     HealthCheck IContainerTemplate.HealthCheck => new HealthCheck
     {
@@ -35,19 +45,6 @@ public sealed class Postgis : IContainerTemplate
         Retries = 5,
         StartPeriod = 60
     };
-
-    public Postgis()
-    {
-         this.EnvironmentVariables = new()
-         {
-             $"POSTGRES_USER={this.Username}",
-             $"PGUSER={this.Username}",
-             $"POSTGRES_DB={this.Database}",
-             $"PGDATABASE={this.Database}",
-             $"POSTGRES_PASSWORD={this.Password}",
-             $"PGPASSWORD={this.Password}"
-         };
-    }
 
     void IContainerTemplate.ReplaceDefaultParameters(DockerToolsContainerOptions options)
     {
@@ -71,7 +68,7 @@ public sealed class Postgis : IContainerTemplate
             this.Password = options.Password;
         }
         
-        this.EnvironmentVariables.AddRange(options.EnvironmentVariables);
+        this.AdditionalEnvironmentVariables.AddRange(options.EnvironmentVariables);
     }
 
     Task<ScriptExecutionResult> IContainerTemplate.PerformPostStartOperationsAsync(DockerClient client, string id, CancellationToken token)
