@@ -10,7 +10,7 @@ namespace miguelcouteirorodrigues.DockerTools.Containers.Templates;
 /// </summary>
 public sealed class Postgres : IContainerTemplate
 {
-    public string Image => "postgres";
+    public string Image { get; private set; } = "postgres";
     public string Tag { get; private set; } = "14.3";
     public string Database { get; private set; } = "postgres";
     public string Username { get; private set; } = "postgres";
@@ -48,6 +48,11 @@ public sealed class Postgres : IContainerTemplate
 
     void IContainerTemplate.ReplaceDefaultParameters(DockerToolsContainerOptions options)
     {
+        if (!string.IsNullOrWhiteSpace(options.Image))
+        {
+            this.Image = options.Image;
+        }
+        
         if (!string.IsNullOrWhiteSpace(options.Tag))
         {
             this.Tag = options.Tag;

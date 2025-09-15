@@ -5,6 +5,7 @@ using miguelcouteirorodrigues.DockerTools.Options.Container;
 
 namespace miguelcouteirorodrigues.DockerTools.Containers.Templates;
 
+[Obsolete("Specify the postgis image and tag on a Postgres template instead")]
 /// <summary>
 /// Creates a new Postgis container.
 /// </summary>

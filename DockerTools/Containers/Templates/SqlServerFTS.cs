@@ -5,6 +5,7 @@ using miguelcouteirorodrigues.DockerTools.Options.Container;
 
 namespace miguelcouteirorodrigues.DockerTools.Containers.Templates;
 
+[Obsolete("Specify the image and tag on a SqlServer template instead")]
 /// <summary>
 /// Creates a new SQL Server container with Full Text Search installed.
 /// </summary>

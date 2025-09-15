@@ -11,8 +11,8 @@ namespace miguelcouteirorodrigues.DockerTools.Containers.Templates;
 public sealed class SqlServer : IContainerTemplate
 {
     private const string SqlCmd = "/opt/mssql-tools18/bin/sqlcmd";
-    
-    public string Image => "mcr.microsoft.com/mssql/server";
+
+    public string Image { get; private set; } = "mcr.microsoft.com/mssql/server";
     public string Tag { get; private set; } = "2022-latest";
     public string Database { get; private set; } = "DockerTools";
     public string Username { get; private set; } = "sa";
@@ -39,7 +39,7 @@ public sealed class SqlServer : IContainerTemplate
 
     HealthCheck IContainerTemplate.HealthCheck => new()
     {
-        Command = $"{GetBaseCommand()} -Q 'select 1' -b -o /dev/null",
+        Command = $"{GetBaseCommand()} -Q 'SET NOCOUNT ON; Select SUM(state) from sys.databases' -b -o /dev/null",
         Interval = new TimeSpan(0, 0, 3),
         Timeout = new TimeSpan(0, 0, 3),
         Retries = 5,
@@ -48,6 +48,11 @@ public sealed class SqlServer : IContainerTemplate
     
     void IContainerTemplate.ReplaceDefaultParameters(DockerToolsContainerOptions options)
     {
+        if (!string.IsNullOrWhiteSpace(options.Image))
+        {
+            this.Image = options.Image;
+        }
+        
         if (!string.IsNullOrWhiteSpace(options.Tag))
         {
             this.Tag = options.Tag;

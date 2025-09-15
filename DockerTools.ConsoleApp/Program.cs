@@ -15,7 +15,7 @@ public static class Program
 
         var tasks = new List<Task>();
         
-        for (var i = 0; i < 1; i++)
+        for (var i = 0; i < 5; i++)
         {
             tasks.Add(ContainerRunAsync(i + 1));
         }
@@ -37,7 +37,9 @@ public static class Program
             container = await new DockerTools<SqlServer>()
                 //.WithCleanUp(true)
                 .WithParameters(options => options
-                    .WithPassword("DataWarehouse4")
+                    .WithImage("juriba-sql")
+                    .WithTag("1.0")
+                    .WithPassword("DataWarehouse04")
                     .AddEnvironmentVariable("MSSQL_AGENT_ENABLED=true"))
                 .CreateAsync();
         }
@@ -71,7 +73,7 @@ public static class Program
             Console.WriteLine($"Instance {instance} script failed with message: " + result);
         }
 
-        await container.DisposeAsync();
+        // await container.DisposeAsync();
         
         Console.WriteLine($"Instance {instance} has been removed");
     }
