@@ -10,9 +10,7 @@ namespace miguelcouteirorodrigues.DockerTools.Operations;
 internal static class StartContainerOperations
 {
     private const string Healthy = "healthy";
-    private const int DefaultAttemptTimeout = 2000;
-    private static readonly TimeSpan DefaultOverallTimeout = new(0, 1, 0);
-    private const int ConsecutiveHealthyResults = 5;
+    private const string Unhealthy = "unhealthy";
 
     internal static Task<bool> TryStartContainerAsync(DockerClient client, string id, CancellationToken token)
     {
@@ -21,48 +19,35 @@ internal static class StartContainerOperations
 
     internal static async Task<bool> IsContainerHealthy(DockerClient client, string id, IContainerTemplate container, CancellationToken token)
     {
-        var startPeriod = (int)(container.HealthCheck?.StartPeriod ?? 0) * 1000;
-        var attemptTimeout = container.HealthCheck?.Timeout.Seconds * 1000 ?? DefaultAttemptTimeout;
-        var overallTimeout = ((container.HealthCheck?.Timeout + container.HealthCheck?.Interval) * container.HealthCheck?.Retries) ?? DefaultOverallTimeout;
-        var healthCounter = 0;
-        
-        Thread.Sleep(startPeriod);
+        bool? result = null;
 
         var stopWatch = new Stopwatch();
         stopWatch.Start();
-        while (stopWatch.Elapsed < overallTimeout)
+        
+        do
         {
             var response = await client.Containers.InspectContainerAsync(id, token).ConfigureAwait(false);
+            var health = response.State.Health;
 
-            switch (response.State.Health)
+            if (health == null)
             {
-                case null when response.State.Running: // container with no health check
-                    return true;
-                //case { Status: Healthy, FailingStreak: 0 }:
-                case { Status: Healthy }:
-                    if (response.State.Health.FailingStreak == 0)
-                    {
-                        healthCounter += 1;
-                    }
-                    break;
-                default:
-                    healthCounter -= 1;
-                    break;
+                return true; // no healthcheck, no way of knowing if container is ready, assume so and move forward
             }
 
-            switch (healthCounter)
+            /*
+             * It seems that Docker Engine already handles most of this by itself, masking any failures
+             * during bootstrap under the label of "starting"; as such, I'm merely checking for either
+             * "healthy" or "unhealthy" labels on the healthcheck instead of trying to recreate its behavior
+             */
+            result = health.Status switch
             {
-                case ConsecutiveHealthyResults:
-                    return true;
-                case ConsecutiveHealthyResults * -1:
-                    return false;
-                default:
-                    Thread.Sleep(attemptTimeout);
-                    break;
-            }
-        }
+                Healthy => true,
+                Unhealthy => false,
+                _ => result
+            };
+        } while (result == null);
 
-        return false;
+        return result.Value;
     }
 
     internal static async Task<IEnumerable<PortConfiguration>> GetRunningPortsAsync(DockerClient client, string id, CancellationToken token)
