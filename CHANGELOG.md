@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
 
+<a name="1.5.0"></a>
+## [1.5.0](https://www.github.com/miguelcouteirorodrigues/DockerTools/releases/tag/v1.5.0) (2025-09-15)
+
+### Features
+
+* Add support for custom images ([#33](https://www.github.com/miguelcouteirorodrigues/DockerTools/issues/33)) ([bee4809](https://www.github.com/miguelcouteirorodrigues/DockerTools/commit/bee480902404c56da607ca4849305f391183e2a5))
+
 <a name="1.4.1"></a>
 ## [1.4.1](https://www.github.com/miguelcouteirorodrigues/DockerTools/releases/tag/v1.4.1) (2025-09-12)
 
